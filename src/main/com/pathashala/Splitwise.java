@@ -15,20 +15,20 @@ public class Splitwise {
     members.forEach(member -> updateExpenses(member));
   }
 
-  private void updateExpenses(Person member){
+  private void updateExpenses(Person member) {
     member.updateDueAmount(averageExpensePerPerson);
   }
 
-  List<Transaction> settleDebts(){
+  List<Transaction> settleDebts() {
     List<Transaction> transactions = new ArrayList<>();
     Optional<Person> maxDebit = members.stream().min(Person::compareTo);
     Optional<Person> maxCredit = members.stream().max(Person::compareTo);
-    if(!maxDebit.isPresent() || !maxCredit.isPresent()) {
+    if (!maxDebit.isPresent() || !maxCredit.isPresent()) {
       return transactions;
     }
-    while(maxDebit.get().hasToSettle() && maxCredit.get().hasToSettle()){
+    while (maxDebit.get().hasToSettle() && maxCredit.get().hasToSettle()) {
       transactions.add(maxDebit.get().paysTo(maxCredit.get()));
-      maxDebit= members.stream().min(Person::compareTo);
+      maxDebit = members.stream().min(Person::compareTo);
       maxCredit = members.stream().max(Person::compareTo);
     }
     return transactions;

@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class TransactionTest {
   @Test
   void expectTransactionsWithSamePayerPayeeAmountToBeEqual() {
-    assertEquals(new Transaction("A","B",20), new Transaction("A","B",20));
+    assertEquals(new Transaction("A", "B", 20), new Transaction("A", "B", 20));
   }
 
   @Test
   void expectTransactionsWithDifferentPayerPayeeAmountToBeUnequal() {
-    assertNotEquals(new Transaction("A","B",20), new Transaction("B","A",20));
+    assertNotEquals(new Transaction("A", "B", 20), new Transaction("B", "A", 20));
   }
 
   @Test
